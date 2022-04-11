@@ -1,0 +1,38 @@
+{
+	"for with pairs()": {
+		"prefix": "pfor",
+		"body": [
+      "for ${1:index}, ${2:value} in pairs(${3:table}) do",
+			"\t${4:-- your code}",
+			"end"
+		],
+		"description": "loop through a table with keys"
+	},
+  "for with ipairs()": {
+		"prefix": "ifor",
+		"body": [
+      "for ${1:index}, ${2:value} in ipairs(${3:table}) do",
+			"\t${4:-- your code}",
+			"end"
+		],
+		"description": "loop through a table without keys"
+	},
+  "New module": {
+    "prefix": "nclass",
+    "body": [
+      "---",
+      "-- ${1:a short description}",
+      "-- @module ${2:module_name}",
+      "-- @module ${3:module_alias}\n",
+      "local ${2} = {}",
+      "local ${4:ModuleName} = {}\n",
+      "function ${2}.new(${5:contructor_params})",
+      "\tlocal self = {}\n",
+      "\t${6:-- your constructor code}\n",
+      "\tsetmetatable(self, { __index = ${4}})",
+      "\treturn self",
+      "end\n",
+      "return ${2}"
+    ]
+  }
+}
