@@ -9,6 +9,7 @@ import * as flushInfo from '../info/sc_flush_info';
 import * as macrosInfo from '../info/sc_macros_info';
 import * as loggerInfo from '../info/sc_logger_info';
 import * as constructors from '../info/constructors_info';
+import * as specials from '../info/special_info';
 
 const allInfoA = [
   paramInfo.info,
@@ -42,6 +43,10 @@ const constructorsAndMethods = [
   loggerInfo.info,
   constructors.constructors
 ];
+
+const specialCompletion = [
+  specials.specialCompletion
+]
 
 export function newGenericHoverDocumentation() {
   const hoverProvider: Array<vscode.Disposable> = [];
@@ -182,14 +187,42 @@ export function paramsGenericSnippetCompletion() {
         const result: Array<vscode.CompletionItem> = [];
 
         allInfoC.forEach(function(list) {
-          list.forEach(function(data) {        
-            if (linePrefix.match(/(?<=\.| |^)(event|params|cache)/)) {
+          list.forEach(function(data) {
+            if (linePrefix.match(/(?<=\.| |^)(event|params|cache)/) && linePrefix.endsWith(data.prefix + data.trigger)) {
               if (data.prefix) {
                 if (data.prefix === "params") {
                   result.push(buildParam(data));
                 } else if (data.prefix === "cache" || data.prefix === "severity") {
                   result.push(buildCache(data));
                 } else if (data.prefix === "event") {
+                  result.push(buildEvent(data));
+                }
+              }
+            }
+          }); 
+        });
+        return result;
+      }
+    },
+    '.'
+  );
+}
+
+export function specialsGenericSnippetCompletion() {
+  return vscode.languages.registerCompletionItemProvider(
+    'lua',
+    {
+      provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+        const linePrefix = document.lineAt(position).text.substr(0, position.character);
+        const result: Array<vscode.CompletionItem> = [];
+
+        specialCompletion.forEach(function(list) {
+          list.forEach(function(data) {
+            if (linePrefix.match(/(?<=\.| |^)(sc_event|sc_param)/) && linePrefix.endsWith(data.prefix + data.trigger)) {
+              if (data.prefix) {
+                if (data.prefix === "sc_param") {
+                  result.push(buildParam(data));
+                } else if (data.prefix === "sc_event") {
                   result.push(buildEvent(data));
                 }
               }

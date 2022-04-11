@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.paramsGenericSnippetCompletion = exports.constructorsGenericSnippetCompletion = exports.newGenericSnippetCompletion = exports.newGenericHoverDocumentation = void 0;
+exports.specialsGenericSnippetCompletion = exports.paramsGenericSnippetCompletion = exports.constructorsGenericSnippetCompletion = exports.newGenericSnippetCompletion = exports.newGenericHoverDocumentation = void 0;
 const vscode = require("vscode");
 const doc_1 = require("../documentation/doc");
 const paramInfo = require("../info/sc_param_info");
@@ -12,6 +12,7 @@ const flushInfo = require("../info/sc_flush_info");
 const macrosInfo = require("../info/sc_macros_info");
 const loggerInfo = require("../info/sc_logger_info");
 const constructors = require("../info/constructors_info");
+const specials = require("../info/special_info");
 const allInfoA = [
     paramInfo.info,
     commonInfo.info,
@@ -40,6 +41,9 @@ const constructorsAndMethods = [
     macrosInfo.info,
     loggerInfo.info,
     constructors.constructors
+];
+const specialCompletion = [
+    specials.specialCompletion
 ];
 function newGenericHoverDocumentation() {
     const hoverProvider = [];
@@ -156,7 +160,7 @@ function paramsGenericSnippetCompletion() {
             const result = [];
             allInfoC.forEach(function (list) {
                 list.forEach(function (data) {
-                    if (linePrefix.match(/(?<=\.| |^)(event|params|cache)/)) {
+                    if (linePrefix.match(/(?<=\.| |^)(event|params|cache)/) && linePrefix.endsWith(data.prefix + data.trigger)) {
                         if (data.prefix) {
                             if (data.prefix === "params") {
                                 result.push(buildParam(data));
@@ -176,6 +180,30 @@ function paramsGenericSnippetCompletion() {
     }, '.');
 }
 exports.paramsGenericSnippetCompletion = paramsGenericSnippetCompletion;
+function specialsGenericSnippetCompletion() {
+    return vscode.languages.registerCompletionItemProvider('lua', {
+        provideCompletionItems(document, position) {
+            const linePrefix = document.lineAt(position).text.substr(0, position.character);
+            const result = [];
+            specialCompletion.forEach(function (list) {
+                list.forEach(function (data) {
+                    if (linePrefix.match(/(?<=\.| |^)(sc_event|sc_param)/) && linePrefix.endsWith(data.prefix + data.trigger)) {
+                        if (data.prefix) {
+                            if (data.prefix === "sc_param") {
+                                result.push(buildParam(data));
+                            }
+                            else if (data.prefix === "sc_event") {
+                                result.push(buildEvent(data));
+                            }
+                        }
+                    }
+                });
+            });
+            return result;
+        }
+    }, '.');
+}
+exports.specialsGenericSnippetCompletion = specialsGenericSnippetCompletion;
 function buildParam(data) {
     const snippetCompletion = new vscode.CompletionItem(data.name);
     const mdDoc = new vscode.MarkdownString("```lua\ntype: " + data.type + "\n```\n\n---\n\n" + data.description);

@@ -7,6 +7,7 @@ function activate(context) {
     context.subscriptions.concat(subscriptions.constructorsGenericSnippetCompletion());
     context.subscriptions.concat(subscriptions.paramsGenericSnippetCompletion());
     context.subscriptions.concat(subscriptions.newGenericHoverDocumentation());
+    context.subscriptions.concat(subscriptions.specialsGenericSnippetCompletion());
 }
 exports.activate = activate;
 //# sourceMappingURL=extension.js.map
