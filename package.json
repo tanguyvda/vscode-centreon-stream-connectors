@@ -2,7 +2,7 @@
   "name": "centreon-stream-connectors",
   "displayName": "centreon-stream-connectors",
   "description": "a set of snippets for Centreon stream connectors with framework documentation",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "tanguyvda",
   "engines": {
     "vscode": "^1.66.0"
