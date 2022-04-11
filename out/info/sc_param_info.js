@@ -4,10 +4,10 @@ exports.paramCompletion = exports.info = void 0;
 let trigger = ":";
 exports.info = {
     "paramOverride": {
-        "class": "sc_param",
+        "class": "sc_params",
         "name": "param_override",
         "description": "replace default values of params with the ones provided by users in the web configuration of the stream connector",
-        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_param.md#param_override-method)",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_params.md#param_override-method)",
         "trigger": trigger,
         "params": [
             {
@@ -20,19 +20,19 @@ exports.info = {
         "return": []
     },
     "checkParams": {
-        "class": "sc_param",
+        "class": "sc_params",
         "name": "check_params",
         "description": "	make sure that the default stream connectors params provided by the user from the web configuration are valid. If not, uses the default value",
-        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_param.md#check_params-method)",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_params.md#check_params-method)",
         "trigger": trigger,
         "params": [],
         "return": []
     },
     "isMandatoryConfigSet": {
-        "class": "sc_param",
+        "class": "sc_params",
         "name": "is_mandatory_config_set",
         "description": "check that all mandatory parameters for a stream connector are set",
-        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_param.md#is_mandatory_config_set-method)",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_params.md#is_mandatory_config_set-method)",
         "trigger": trigger,
         "params": [
             {
@@ -58,10 +58,10 @@ exports.info = {
         ]
     },
     "getKafkaParameters": {
-        "class": "sc_param",
+        "class": "sc_params",
         "name": "get_kafka_params",
         "description": "retrieve Kafka dedicated parameters from the parameter list and put them in the provided kafka_config object",
-        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_param.md#get_kafka_params-method)",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_params.md#get_kafka_params-method)",
         "trigger": trigger,
         "params": [
             {
@@ -80,10 +80,10 @@ exports.info = {
         "return": []
     },
     "loadEventFormatFile": {
-        "class": "sc_param",
+        "class": "sc_params",
         "name": "load_event_format_file",
         "description": "load a file that serves as a template for formating events",
-        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_param.md#load_event_format_file-method)",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_params.md#load_event_format_file-method)",
         "trigger": trigger,
         "params": [
             {
@@ -103,10 +103,10 @@ exports.info = {
         ]
     },
     "buildAcceptedElementsInfo": {
-        "class": "sc_param",
+        "class": "sc_params",
         "name": "build_accepted_elements_info",
         "description": "build a table that store information about accepted elements",
-        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_param.md#build_accepted_elements_info-method)",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_params.md#build_accepted_elements_info-method)",
         "trigger": trigger,
         "params": [],
         "return": []

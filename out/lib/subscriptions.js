@@ -187,9 +187,9 @@ function specialsGenericSnippetCompletion() {
             const result = [];
             specialCompletion.forEach(function (list) {
                 list.forEach(function (data) {
-                    if (linePrefix.match(/(?<=\.| |^)(sc_event|sc_param)/) && linePrefix.endsWith(data.prefix + data.trigger)) {
+                    if (linePrefix.match(/(?<=\.| |^)(sc_event|sc_params)/) && linePrefix.endsWith(data.prefix + data.trigger)) {
                         if (data.prefix) {
-                            if (data.prefix === "sc_param") {
+                            if (data.prefix === "sc_params") {
                                 result.push(buildParam(data));
                             }
                             else if (data.prefix === "sc_event") {
