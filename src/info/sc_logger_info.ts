@@ -20,7 +20,7 @@ export const info = {
   "warning": {
     "class": "sc_logger",
     "name": "warning",
-    "description": "write an warning message in the log file",
+    "description": "write a warning message in the log file",
     "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_logger.md#warning-method)",
     "trigger": trigger,
     "params": [
@@ -36,7 +36,7 @@ export const info = {
   "notice": {
     "class": "sc_logger",
     "name": "notice",
-    "description": "write an notice message in the log file",
+    "description": "write a notice message in the log file",
     "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_logger.md#notice-method)",
     "trigger": trigger,
     "params": [
@@ -52,7 +52,7 @@ export const info = {
   "debug": {
     "class": "sc_logger",
     "name": "debug",
-    "description": "write an debug message in the log file",
+    "description": "write a debug message in the log file",
     "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_logger.md#debug-method)",
     "trigger": trigger,
     "params": [
@@ -68,7 +68,7 @@ export const info = {
   "info": {
     "class": "sc_logger",
     "name": "info",
-    "description": "write an info message in the log file",
+    "description": "write a info message in the log file",
     "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_logger.md#info-method)",
     "trigger": trigger,
     "params": [

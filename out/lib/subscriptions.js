@@ -79,16 +79,21 @@ function newGenericSnippetCompletion() {
                         // build snippet
                         let snippet = methodInfo.name + '(';
                         if (methodInfo.params.length !== 0) {
-                            methodInfo.params.forEach(function (value, index) {
-                                index++;
-                                // create snippet text for auto completation
-                                if (index !== 1) {
-                                    snippet += (value.optional ? "${" + index + ": [, " + value.name + "]}" : ", ${" + index + ":" + value.name + "}");
-                                }
-                                else {
-                                    snippet += (value.optional ? "${" + index + ":[" + value.name + "]}" : "${" + index + ":" + value.name + "}");
-                                }
-                            });
+                            if (methodInfo.class === 'sc_logger') {
+                                snippet += '"[${1:class_name}:${2:function_name}]: ${3:message}"';
+                            }
+                            else {
+                                methodInfo.params.forEach(function (value, index) {
+                                    index++;
+                                    // create snippet text for auto completation
+                                    if (index !== 1) {
+                                        snippet += (value.optional ? "${" + index + ": [, " + value.name + "]}" : ", ${" + index + ":" + value.name + "}");
+                                    }
+                                    else {
+                                        snippet += (value.optional ? "${" + index + ":[" + value.name + "]}" : "${" + index + ":" + value.name + "}");
+                                    }
+                                });
+                            }
                         }
                         snippet += ")";
                         // completion only params
@@ -127,9 +132,6 @@ function constructorsGenericSnippetCompletion() {
                                     snippet += (value.optional ? "${" + index + ":[" + value.name + "]}" : "${" + index + ":" + value.name + "}");
                                 }
                             });
-                        }
-                        if (methodInfo.class === 'sc_logger') {
-                            snippet += "[${1:class_name}:${2:function_name}]: ${3:message}";
                         }
                         snippet += ")";
                         // completion only params

@@ -83,7 +83,6 @@ export function newGenericSnippetCompletion() {
     {
       provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
         const linePrefix = document.lineAt(position).text.substr(0, position.character);
-        
         const result: Array<vscode.CompletionItem> = [];
         allInfoA.forEach(function(object) {
           for (const [method, methodInfo] of Object.entries(object)) {
@@ -94,16 +93,21 @@ export function newGenericSnippetCompletion() {
               let snippet: string = methodInfo.name + '(';
 
               if (methodInfo.params.length !== 0) {
-                methodInfo.params.forEach(function(value, index) {
-                  index++;
-                  // create snippet text for auto completation
-                  if (index !== 1) {
-                    snippet += (value.optional ? "${" + index + ": [, " + value.name + "]}" : ", ${" + index + ":" + value.name + "}");
-                  } else {
-                    snippet += (value.optional ? "${" + index + ":[" + value.name + "]}" : "${" + index + ":" + value.name + "}");
-                  }
-                });
+                if (methodInfo.class === 'sc_logger') {
+                  snippet += '"[${1:class_name}:${2:function_name}]: ${3:message}"';
+                } else {
+                  methodInfo.params.forEach(function(value, index) {
+                    index++;
+                    // create snippet text for auto completation
+                    if (index !== 1) {
+                      snippet += (value.optional ? "${" + index + ": [, " + value.name + "]}" : ", ${" + index + ":" + value.name + "}");
+                    } else {
+                      snippet += (value.optional ? "${" + index + ":[" + value.name + "]}" : "${" + index + ":" + value.name + "}");
+                    }
+                  });
+                }
               }
+
               snippet += ")";
             
               // completion only params
@@ -148,10 +152,6 @@ export function constructorsGenericSnippetCompletion() {
                   }
                 });
                 
-              }
-
-              if (methodInfo.class === 'sc_logger') {
-                snippet += "[${1:class_name}:${2:function_name}]: ${3:message}";
               }
 
               snippet += ")";
