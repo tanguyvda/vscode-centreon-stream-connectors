@@ -175,7 +175,7 @@ exports.constructors = {
         "return": []
     },
     "paramConstructor": {
-        "class": "sc_param",
+        "class": "sc_params",
         "name": "new",
         "description": "Create an instance of the sc_broker module",
         "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_broker.md#module-constructor)",
