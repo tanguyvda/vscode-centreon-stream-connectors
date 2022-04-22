@@ -2,7 +2,7 @@ const trigger= '.';
 
 export const specialCompletion = [
   {
-    "prefix": "sc_param",
+    "prefix": "sc_params",
     "trigger": trigger,
     "scope": "any",
     "name": "params",
