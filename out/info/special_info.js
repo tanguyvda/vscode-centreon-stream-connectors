@@ -4,7 +4,7 @@ exports.specialCompletion = void 0;
 const trigger = '.';
 exports.specialCompletion = [
     {
-        "prefix": "sc_param",
+        "prefix": "sc_params",
         "trigger": trigger,
         "scope": "any",
         "name": "params",
