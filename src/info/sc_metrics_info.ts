@@ -83,11 +83,18 @@ export const info = {
   },
   "isValidPerfdata": {
     "class": "sc_metrics",
-    "name": "is_valid_perfdata	",
+    "name": "is_valid_perfdata",
     "description": "makes sure that the performance data is valid",
     "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_metrics.md#is_valid_perfdata-method)",
     "trigger": trigger,
-    "params": [],
+    "params": [
+      {
+        "name": "perfdata",
+        "description": "a string that contains perfdata",
+        "type": "string",
+        "optional": false
+      }
+    ],
     "return": [
       {
         "name": "boolean",
@@ -96,5 +103,21 @@ export const info = {
         "optional": false
       }
     ]
+  },
+  "buildMetric": {
+    "class": "sc_metrics",
+    "name": "build_metric",
+    "description": "use the stream connector format method to parse every metric in the event",
+    "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_metrics.md#build_metric-method)",
+    "trigger": trigger,
+    "params": [
+      {
+        "name": "format_metric",
+        "description": "the format method from the stream connector",
+        "type": "function",
+        "optional": false
+      }
+    ],
+    "return": []
   }
 };

@@ -325,5 +325,40 @@ export const info = {
         "optional": false
       },
     ]
+  },
+  "dumper": {
+    "class": "sc_common",
+    "name": "dumper",
+    "description": "dump variables for debug purpose",
+    "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_common.md#dumper-method)",
+    "trigger": trigger,
+    "params": [
+      {
+        "name": "variable",
+        "description": "the variable that must be dumped",
+        "type": "any",
+        "optional": false
+      },
+      {
+        "name": "result",
+        "description": "the string that contains the dumped variable. ONLY USED INTERNALLY FOR RECURSIVE PURPOSE",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "tab_char",
+        "description": "the string that contains the tab character. ONLY USED INTERNALLY FOR RECURSIVE PURPOSE (and design)",
+        "type": "string",
+        "optional": true
+      }
+    ],
+    "return": [
+      {
+        "name": "result",
+        "description": "the dumped variable",
+        "type": "string",
+        "optional": false
+      },
+    ]
   }
 };
