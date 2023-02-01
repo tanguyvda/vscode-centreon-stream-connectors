@@ -82,6 +82,40 @@ exports.info = {
             }
         ],
         "return": []
+    },
+    "logCurlCommand": {
+        "class": "sc_logger",
+        "name": "log_curl_command",
+        "description": "print a notice message containing a ready to use shell curl command in the logfile",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_logger.md#log_curl_command-method)",
+        "trigger": trigger,
+        "params": [
+            {
+                "name": "url",
+                "description": "the url for the curl command",
+                "type": "string",
+                "optional": false
+            },
+            {
+                "name": "metadata",
+                "description": "metadata containing headers information and http method for curl",
+                "type": "table",
+                "optional": false
+            },
+            {
+                "name": "params",
+                "description": "stream connector parameters",
+                "type": "table",
+                "optional": false
+            },
+            {
+                "name": "data",
+                "description": "data that must be sent",
+                "type": "table",
+                "optional": true
+            }
+        ],
+        "return": []
     }
 };
 //# sourceMappingURL=sc_logger_info.js.map

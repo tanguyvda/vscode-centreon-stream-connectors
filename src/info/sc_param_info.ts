@@ -17,10 +17,10 @@ export const info = {
         ],
         "return": []
     },
-        "checkParams": {
+    "checkParams": {
         "class": "sc_params",
         "name": "check_params",
-        "description": "	make sure that the default stream connectors params provided by the user from the web configuration are valid. If not, uses the default value",
+        "description": "make sure that the default stream connectors params provided by the user from the web configuration are valid. If not, uses the default value",
         "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_params.md#check_params-method)",
         "trigger": trigger,
         "params": [],

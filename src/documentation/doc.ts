@@ -35,7 +35,7 @@ export class Doc {
   }
 
   public buildArgs() {
-    let docParam: string = "";
+    let docParam = "";
     let docHeader: string = "```" + this.language + "\nfunction " + this.info.name + "(";
     
     if (this.info.params.length !== 0) {
@@ -62,7 +62,7 @@ export class Doc {
 
   public buildReturn() {
     if (this.info.return.length !== 0) {
-      let docReturn: string = "";
+      let docReturn = "";
 
       // compute all return
       this.info.return.forEach(function(value, index) {

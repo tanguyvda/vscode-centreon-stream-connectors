@@ -195,6 +195,22 @@ exports.info = {
             }
         ]
     },
+    "isValidEventFlappingState": {
+        "class": "sc_event",
+        "name": "is_valid_event_flapping_state",
+        "description": "check if the flapping state of the event is valid according to the stream connector params",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_event.md#is_valid_event_flapping_state-method)",
+        "trigger": trigger,
+        "params": [],
+        "return": [
+            {
+                "name": "boolean",
+                "description": "true or false",
+                "type": "boolean",
+                "optional": false
+            }
+        ]
+    },
     "isValidEventDowntimeState": {
         "class": "sc_event",
         "name": "is_valid_event_downtime_state",
@@ -1923,6 +1939,20 @@ exports.eventCompletion = [
         "scope": "host_status,service_status",
         "name": "flapping",
         "type": "boolean"
+    },
+    {
+        "prefix": "event",
+        "trigger": trigger,
+        "scope": "host_status,service_status",
+        "name": "long_output",
+        "type": "string"
+    },
+    {
+        "prefix": "event",
+        "trigger": trigger,
+        "scope": "host_status,service_status",
+        "name": "short_output",
+        "type": "string"
     },
     {
         "prefix": "event",

@@ -362,6 +362,58 @@ exports.info = {
                 "optional": false
             },
         ]
+    },
+    "luaRegexEscape": {
+        "class": "sc_common",
+        "name": "lua_regex_escape",
+        "description": "escape lua regex special characters",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_common.md#lua_regex_escape-method)",
+        "trigger": trigger,
+        "params": [
+            {
+                "name": "string",
+                "description": "a string that must be escaped",
+                "type": "string",
+                "optional": false
+            }
+        ],
+        "return": [
+            {
+                "name": "string",
+                "description": "an escaped string (or the raw parameter if it was nil or not a string)",
+                "type": "string",
+                "optional": false
+            },
+        ]
+    },
+    "trim": {
+        "class": "sc_common",
+        "name": "trim",
+        "description": "remove spaces (or the specified character) at the beginning and the end of a string",
+        "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_common.md#trim-method)",
+        "trigger": trigger,
+        "params": [
+            {
+                "name": "string",
+                "description": "the string that must be trimmed",
+                "type": "string",
+                "optional": false
+            },
+            {
+                "name": "string",
+                "description": "the character the must be removed (if not provided, will remove space characters)",
+                "type": "string",
+                "optional": true
+            }
+        ],
+        "return": [
+            {
+                "name": "string",
+                "description": "the trimmed variable",
+                "type": "string",
+                "optional": false
+            },
+        ]
     }
 };
 //# sourceMappingURL=sc_common_info.js.map

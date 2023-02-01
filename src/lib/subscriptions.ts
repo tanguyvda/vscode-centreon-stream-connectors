@@ -64,11 +64,11 @@ function hoverGenericDocumentation(methodInfo: any) {
     'lua',
     {
       provideHover(document:vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
-        let regexTrigger: string = (methodInfo.trigger === '.' ? '\\.' : methodInfo.trigger);
-        const regex: RegExp = new RegExp(methodInfo.class + regexTrigger + methodInfo.name);
+        const regexTrigger: string = (methodInfo.trigger === '.' ? '\\.' : methodInfo.trigger);
+        const regex = new RegExp(regexTrigger + methodInfo.name);
         const wordRange: any = document.getWordRangeAtPosition(position, regex);
         const keyWord: string = document.getText(wordRange);
-        const desiredWord: string = methodInfo.class + methodInfo.trigger + methodInfo.name;
+        const desiredWord: string = methodInfo.trigger + methodInfo.name;
 
         if (keyWord === desiredWord) {
           const doc = new Doc(methodInfo);
@@ -98,7 +98,7 @@ export function newGenericSnippetCompletion() {
               let snippet: string = methodInfo.name + '(';
 
               if (methodInfo.params.length !== 0) {
-                if (methodInfo.class === 'sc_logger') {
+                if (methodInfo.class === 'sc_logger' && methodInfo.name.match(/info|debug|error|warning|notice/)) {
                   snippet += '"[${1:class_name}:${2:function_name}]: ${3:message}"';
                 } else {
                   methodInfo.params.forEach(function(value, index) {
@@ -183,7 +183,7 @@ export function paramsGenericSnippetCompletion() {
     'lua',
     {
       provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
-        const linePrefix = document.lineAt(position).text.substr(0, position.character);
+        const linePrefix = document.lineAt(position).text.substring(0, position.character);
         const result: Array<vscode.CompletionItem> = [];
 
         allInfoC.forEach(function(list) {
@@ -213,7 +213,7 @@ export function specialsGenericSnippetCompletion() {
     'lua',
     {
       provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
-        const linePrefix = document.lineAt(position).text.substr(0, position.character);
+        const linePrefix = document.lineAt(position).text.substring(0, position.character);
         const result: Array<vscode.CompletionItem> = [];
 
         specialCompletion.forEach(function(list) {

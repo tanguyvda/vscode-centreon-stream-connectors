@@ -58,11 +58,11 @@ exports.newGenericHoverDocumentation = newGenericHoverDocumentation;
 function hoverGenericDocumentation(methodInfo) {
     return vscode.languages.registerHoverProvider('lua', {
         provideHover(document, position, token) {
-            let regexTrigger = (methodInfo.trigger === '.' ? '\\.' : methodInfo.trigger);
-            const regex = new RegExp(methodInfo.class + regexTrigger + methodInfo.name);
+            const regexTrigger = (methodInfo.trigger === '.' ? '\\.' : methodInfo.trigger);
+            const regex = new RegExp(regexTrigger + methodInfo.name);
             const wordRange = document.getWordRangeAtPosition(position, regex);
             const keyWord = document.getText(wordRange);
-            const desiredWord = methodInfo.class + methodInfo.trigger + methodInfo.name;
+            const desiredWord = methodInfo.trigger + methodInfo.name;
             if (keyWord === desiredWord) {
                 const doc = new doc_1.Doc(methodInfo);
                 // Checks if object is tagged with the tag\\.\n\nReturns:\n\n  Returns true if object is tagged with tag\\.")
@@ -83,7 +83,7 @@ function newGenericSnippetCompletion() {
                         // build snippet
                         let snippet = methodInfo.name + '(';
                         if (methodInfo.params.length !== 0) {
-                            if (methodInfo.class === 'sc_logger') {
+                            if (methodInfo.class === 'sc_logger' && methodInfo.name.match(/info|debug|error|warning|notice/)) {
                                 snippet += '"[${1:class_name}:${2:function_name}]: ${3:message}"';
                             }
                             else {
@@ -156,7 +156,7 @@ exports.constructorsGenericSnippetCompletion = constructorsGenericSnippetComplet
 function paramsGenericSnippetCompletion() {
     return vscode.languages.registerCompletionItemProvider('lua', {
         provideCompletionItems(document, position) {
-            const linePrefix = document.lineAt(position).text.substr(0, position.character);
+            const linePrefix = document.lineAt(position).text.substring(0, position.character);
             const result = [];
             allInfoC.forEach(function (list) {
                 list.forEach(function (data) {
@@ -165,11 +165,11 @@ function paramsGenericSnippetCompletion() {
                             if (data.prefix === "params") {
                                 result.push(buildParam(data));
                             }
-                            else if (data.prefix === "cache" || data.prefix === "severity") {
-                                result.push(buildCache(data));
-                            }
                             else if (data.prefix === "event") {
                                 result.push(buildEvent(data));
+                            }
+                            else if (data.prefix.match(/(cache|severity|host|service|ba)/)) {
+                                result.push(buildCache(data));
                             }
                         }
                     }
@@ -183,7 +183,7 @@ exports.paramsGenericSnippetCompletion = paramsGenericSnippetCompletion;
 function specialsGenericSnippetCompletion() {
     return vscode.languages.registerCompletionItemProvider('lua', {
         provideCompletionItems(document, position) {
-            const linePrefix = document.lineAt(position).text.substr(0, position.character);
+            const linePrefix = document.lineAt(position).text.substring(0, position.character);
             const result = [];
             specialCompletion.forEach(function (list) {
                 list.forEach(function (data) {
