@@ -193,6 +193,22 @@ export const info = {
       }
     ]
   },
+  "isValidEventFlappingState": {
+    "class": "sc_event",
+    "name": "is_valid_event_flapping_state",
+    "description": "check if the flapping state of the event is valid according to the stream connector params",
+    "documentation": "[Documentation](https://github.com/centreon/centreon-stream-connector-scripts/blob/master/modules/docs/sc_event.md#is_valid_event_flapping_state-method)",
+    "trigger": trigger,
+    "params": [],
+    "return": [
+      {
+        "name": "boolean",
+        "description": "true or false",
+        "type": "boolean",
+        "optional": false
+      }
+    ]
+  },
   "isValidEventDowntimeState": {
     "class": "sc_event",
     "name": "is_valid_event_downtime_state",
@@ -1659,504 +1675,455 @@ export const eventCompletion = [
     "scope": "host_status,service_status",
     "name": "last_hard_state_change",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "max_check_attempts",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "check_attempt",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status,acknowledgement,ba_status",
     "name": "state",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "enabled",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "event_handler_enabled",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "last_update",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "checked",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "passive_checks",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "notification_number",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "execution_time",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "flap_detection",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "event_handler",
     "type": "string"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "last_hard_state",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,\n\nservice_status,\n\ndowntime,\n\nacknowledgement,\n\nba_status",
     "name": "element",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "check_command",
     "type": "string"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "no_more_notifications",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "acknowledged",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "state_type",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status,ba_status",
     "name": "last_state_change",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,\n\nservice_status,\n\ndowntime,\n\nacknowledgement,\n\nba_status",
     "name": "category",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "should_be_scheduled",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "last_check",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "perfdata",
     "type": "string"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "retry_interval",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "notify",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "percent_state_change",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "output",
     "type": "string"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "scheduled_downtime_depth",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "check_period",
     "type": "string"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "next_check",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "latency",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "obsess_over_host",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "active_checks",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,\n\nservice_status,\n\ndowntime,\n\nacknowledgement",
     "name": "host_id",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "acknowledgement_type",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "check_type",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "check_interval",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status,service_status",
     "name": "flapping",
     "type": "boolean"
-  }
-  ,
+  },
+  {
+    "prefix": "event",
+    "trigger": trigger,
+    "scope": "host_status,service_status",
+    "name": "long_output",
+    "type": "string"
+  },
+  {
+    "prefix": "event",
+    "trigger": trigger,
+    "scope": "host_status,service_status",
+    "name": "short_output",
+    "type": "string"
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "host_status",
     "name": "last_time_up",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "service_status,\n\ndowntime,\n\nacknowledgement",
     "name": "service_id",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "service_status",
     "name": "last_time_ok",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime",
     "name": "actual_start_time",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime_end",
     "name": "actual_end_time",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime_end,acknowledgement_end",
     "name": "deletion_time",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime",
     "name": "cancelled",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime",
     "name": "duration",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime",
     "name": "end_time",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime",
     "name": "fixed",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime",
     "name": "internal_id",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime",
     "name": "start_time",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime",
     "name": "started",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime,acknowledgement",
     "name": "author",
     "type": "string"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime,acknowledgement",
     "name": "comment_data",
     "type": "string"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "downtime,acknowledgement",
     "name": "entry_time",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "acknowledgement",
     "name": "notify_contacts",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "acknowledgement",
     "name": "persistent_comment",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "acknowledgement",
     "name": "sticky",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "ba_status",
     "name": "ba_id",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "ba_status",
     "name": "in_downtime",
     "type": "boolean"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "ba_status",
     "name": "level_acknowledgement",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "ba_status",
     "name": "level_downtime",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,
     "scope": "ba_status",
     "name": "level_nominal",
     "type": "number"
-  }
-  ,
+  },
   {
     "prefix": "event",
     "trigger": trigger,

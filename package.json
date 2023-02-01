@@ -4,6 +4,7 @@
   "description": "a set of snippets for Centreon stream connectors with framework documentation",
   "version": "0.0.7",
   "publisher": "tanguyvda",
+  "icon": "centreon_logo.png",
   "engines": {
     "vscode": "^1.66.0"
   },

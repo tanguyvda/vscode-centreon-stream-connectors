@@ -192,10 +192,10 @@ export function paramsGenericSnippetCompletion() {
               if (data.prefix) {
                 if (data.prefix === "params") {
                   result.push(buildParam(data));
-                } else if (data.prefix === "cache" || data.prefix === "severity") {
-                  result.push(buildCache(data));
                 } else if (data.prefix === "event") {
                   result.push(buildEvent(data));
+                } else if (data.prefix.match(/(cache|severity|host|service|ba)/)) {
+                  result.push(buildCache(data));
                 }
               }
             }
