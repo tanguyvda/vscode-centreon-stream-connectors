@@ -2,7 +2,7 @@
   "name": "centreon-stream-connectors",
   "displayName": "centreon-stream-connectors",
   "description": "a set of snippets for Centreon stream connectors with framework documentation",
-  "version": "3.6.1",
+  "version": "3.6.2",
   "publisher": "tanguyvda",
   "icon": "centreon_logo.png",
   "engines": {
