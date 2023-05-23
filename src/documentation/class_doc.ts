@@ -1,13 +1,12 @@
 import * as vscode from 'vscode';
-import * as subscriptions from '../lib/subscriptions';
-import { IfcInfo, IfcResult } from './interface';
+import { IfcClassInfo, IfcResult } from './interface';
 
-export class Doc {
-  info: IfcInfo;
+export class ClassDoc {
+  info: IfcClassInfo;
   result: IfcResult;
   language: string;
 
-  constructor(info: IfcInfo) {
+  constructor(info: IfcClassInfo) {
     this.info = info;
     this.language = 'lua';
     this.result = { 

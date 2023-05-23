@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.specialsGenericSnippetCompletion = exports.paramsGenericSnippetCompletion = exports.constructorsGenericSnippetCompletion = exports.newGenericSnippetCompletion = exports.newGenericHoverDocumentation = void 0;
+exports.specialsGenericSnippetCompletion = exports.paramsGenericSnippetCompletion = exports.constructorsGenericSnippetCompletion = exports.newGenericSnippetCompletion = exports.newParamHoverDocumentation = exports.newGenericHoverDocumentation = void 0;
 const vscode = require("vscode");
-const doc_1 = require("../documentation/doc");
+const class_doc_1 = require("../documentation/class_doc");
+const param_doc_1 = require("../documentation/param_doc");
 const paramInfo = require("../info/sc_param_info");
 const commonInfo = require("../info/sc_common_info");
 const eventInfo = require("../info/sc_event_info");
@@ -59,14 +60,43 @@ function hoverGenericDocumentation(methodInfo) {
     return vscode.languages.registerHoverProvider('lua', {
         provideHover(document, position, token) {
             const regexTrigger = (methodInfo.trigger === '.' ? '\\.' : methodInfo.trigger);
-            const regex = new RegExp(regexTrigger + methodInfo.name);
+            const regex = new RegExp(methodInfo.class + regexTrigger + methodInfo.name);
             const wordRange = document.getWordRangeAtPosition(position, regex);
-            const keyWord = document.getText(wordRange);
-            const desiredWord = methodInfo.trigger + methodInfo.name;
-            if (keyWord === desiredWord) {
-                const doc = new doc_1.Doc(methodInfo);
-                // Checks if object is tagged with the tag\\.\n\nReturns:\n\n  Returns true if object is tagged with tag\\.")
-                return new vscode.Hover(doc.getDocMarkdown());
+            if (wordRange !== undefined) {
+                const keyWord = document.getText(wordRange);
+                const desiredWord = methodInfo.class + methodInfo.trigger + methodInfo.name;
+                if (keyWord === desiredWord) {
+                    const doc = new class_doc_1.ClassDoc(methodInfo);
+                    // Checks if object is tagged with the tag\\.\n\nReturns:\n\n  Returns true if object is tagged with tag\\.")
+                    return new vscode.Hover(doc.getDocMarkdown());
+                }
+            }
+            return undefined;
+        }
+    });
+}
+function newParamHoverDocumentation() {
+    const hoverProvider = [];
+    paramInfo.paramCompletion.forEach(function (info) {
+        hoverProvider.concat(hoverProvider, hoverParamDocumentation(info));
+    });
+    return hoverProvider;
+}
+exports.newParamHoverDocumentation = newParamHoverDocumentation;
+function hoverParamDocumentation(info) {
+    return vscode.languages.registerHoverProvider('lua', {
+        provideHover(document, position, token) {
+            const regexTrigger = (info.trigger === '.' ? '\\.' : info.trigger);
+            const regex = new RegExp(info.prefix + regexTrigger + info.name);
+            const wordRange = document.getWordRangeAtPosition(position, regex);
+            if (wordRange !== undefined) {
+                const keyWord = document.getText(wordRange);
+                const desiredWord = info.prefix + info.trigger + info.name;
+                if (keyWord === desiredWord) {
+                    const doc = new param_doc_1.ParamDoc(info);
+                    // Checks if object is tagged with the tag\\.\n\nReturns:\n\n  Returns true if object is tagged with tag\\.")
+                    return new vscode.Hover(doc.getDocMarkdown());
+                }
             }
             return undefined;
         }

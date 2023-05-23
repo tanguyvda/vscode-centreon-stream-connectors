@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
-import { Doc } from '../documentation/doc';
+import { ClassDoc } from '../documentation/class_doc';
+import { ParamDoc } from '../documentation/param_doc';
 import * as paramInfo from '../info/sc_param_info';
 import * as commonInfo from '../info/sc_common_info';
 import * as eventInfo from '../info/sc_event_info';
@@ -65,15 +66,53 @@ function hoverGenericDocumentation(methodInfo: any) {
     {
       provideHover(document:vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
         const regexTrigger: string = (methodInfo.trigger === '.' ? '\\.' : methodInfo.trigger);
-        const regex = new RegExp(regexTrigger + methodInfo.name);
+        const regex = new RegExp(methodInfo.class + regexTrigger + methodInfo.name);
         const wordRange: any = document.getWordRangeAtPosition(position, regex);
-        const keyWord: string = document.getText(wordRange);
-        const desiredWord: string = methodInfo.trigger + methodInfo.name;
 
-        if (keyWord === desiredWord) {
-          const doc = new Doc(methodInfo);
-          // Checks if object is tagged with the tag\\.\n\nReturns:\n\n  Returns true if object is tagged with tag\\.")
-          return new vscode.Hover(doc.getDocMarkdown());
+        if (wordRange !== undefined) {
+          const keyWord: string = document.getText(wordRange);
+          const desiredWord: string = methodInfo.class + methodInfo.trigger + methodInfo.name;
+
+          if (keyWord === desiredWord) {
+            const doc = new ClassDoc(methodInfo);
+            // Checks if object is tagged with the tag\\.\n\nReturns:\n\n  Returns true if object is tagged with tag\\.")
+            return new vscode.Hover(doc.getDocMarkdown());
+          }
+        }
+
+        return undefined;
+      }
+    }
+  );
+}
+
+export function newParamHoverDocumentation() {
+  const hoverProvider: Array<vscode.Disposable> = [];
+  paramInfo.paramCompletion.forEach(function(info) {
+    hoverProvider.concat(hoverProvider, hoverParamDocumentation(info));
+  });
+
+  return hoverProvider;
+}
+
+function hoverParamDocumentation(info: any) {
+  return vscode.languages.registerHoverProvider(
+    'lua',
+    {
+      provideHover(document:vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken) {
+        const regexTrigger: string = (info.trigger === '.' ? '\\.' : info.trigger);
+        const regex = new RegExp(info.prefix + regexTrigger + info.name);
+        const wordRange: any = document.getWordRangeAtPosition(position, regex);
+
+        if (wordRange !== undefined) {
+          const keyWord: string = document.getText(wordRange);
+          const desiredWord: string = info.prefix + info.trigger + info.name;
+
+          if (keyWord === desiredWord) {
+            const doc = new ParamDoc(info);
+            // Checks if object is tagged with the tag\\.\n\nReturns:\n\n  Returns true if object is tagged with tag\\.")
+            return new vscode.Hover(doc.getDocMarkdown());
+          }
         }
 
         return undefined;

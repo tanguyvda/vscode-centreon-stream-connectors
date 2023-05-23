@@ -1,4 +1,4 @@
-export interface IfcInfo {
+export interface IfcClassInfo {
   class: string,
   name: string,
   description: string,

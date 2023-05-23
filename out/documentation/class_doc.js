@@ -68,4 +68,4 @@ class ClassDoc {
     }
 }
 exports.ClassDoc = ClassDoc;
-//# sourceMappingURL=doc.js.map
+//# sourceMappingURL=class_doc.js.map
